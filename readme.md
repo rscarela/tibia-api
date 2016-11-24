@@ -10,7 +10,31 @@ to build projects that depends on Tibia.com data (e.g. statistics).
 
 ## How to Install?
 
-TODO
+All you have to do is include Tibia-API as a dependency in your project. To do this, include Jitpack repository in your
+project and the dependency itself.
+
+### Maven
+
+Include in your pom.xml file:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.rscarela</groupId>
+        <artifactId>tibia-api</artifactId>
+        <version>-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
+### Gradle
 
 ## How to use?
 
