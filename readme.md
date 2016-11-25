@@ -55,4 +55,23 @@ version until there. After the first release, this doc will keep the most recent
 
 ## How to use?
 
-TODO
+Using Tibia-API is pretty simple. The API is abstracting all interaction with Tibia.com, so all you have to do is to
+use the client to obtain any data you want.
+
+The first class you are about to use is called TibiaClientBuilder. This one is responsile for creating an instance of
+a TibiaClient, which you will be use for every operation you'd like to.
+
+```java
+
+TibiaClient tibia = new TibiaClientBuilder().build();
+
+```
+
+Code above is enough to get an instance of a client with default properties (which shall be enough for most cases). Using
+it is as simple as:
+
+```java
+
+List<World> worlds = tibia.worlds().fetchAll();
+
+```
