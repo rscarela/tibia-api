@@ -19,7 +19,7 @@ public class WorldAPI {
 	}
 
 	public List<World> fetchAll() {
-		return connector.get("/community/?subtopic=worlds", TibiaParameters.empty(), new WorldListParser());
+		return connector.get("/community/?subtopic=worlds", new WorldListParser());
 	}
 
 	public World fetchByName(WorldName name) {
@@ -27,7 +27,7 @@ public class WorldAPI {
 	}
 
 	public World fetchByName(String name) {
-		return connector.get("/community/?subtopic=worlds", TibiaParameters.empty(), new WorldParser(name));
+		return connector.get("/community/?subtopic=worlds", new WorldParser(name));
 	}
 
 }

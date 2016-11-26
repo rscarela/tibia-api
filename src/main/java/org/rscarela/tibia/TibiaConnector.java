@@ -16,6 +16,10 @@ public class TibiaConnector {
 		this.baseURL = baseURL;
 	}
 
+	public <T> T get(String URI , ResponseParser<T> parser) {
+		return get(URI, TibiaParameters.empty(), parser);
+	}
+
 	public <T> T get(String URI, TibiaParameters parameters, ResponseParser<T> parser) {
 		try {
 			String URL = handleURL(URI, parameters);
