@@ -3,6 +3,7 @@ package org.rscarela.tibia.api.worlds;
 import org.rscarela.tibia.TibiaConnector;
 import org.rscarela.tibia.TibiaParameters;
 import org.rscarela.tibia.api.worlds.parsers.WorldListParser;
+import org.rscarela.tibia.api.worlds.parsers.WorldParser;
 
 import java.util.List;
 
@@ -22,11 +23,11 @@ public class WorldAPI {
 	}
 
 	public World fetchByName(WorldName name) {
-		return null;
+		return fetchByName(name.name());
 	}
 
-	public World featchByName(String name) {
-		return null;
+	public World fetchByName(String name) {
+		return connector.get("/community/?subtopic=worlds", TibiaParameters.empty(), new WorldParser(name));
 	}
 
 }

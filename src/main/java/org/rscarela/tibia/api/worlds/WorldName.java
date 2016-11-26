@@ -1,6 +1,8 @@
 package org.rscarela.tibia.api.worlds;
 
 /**
+ * An enum containing all game worlds.
+ *
  * @author Renan Scarela
  */
 public enum WorldName {
@@ -65,6 +67,9 @@ public enum WorldName {
 	XYLANA,
 	YANARA,
 	ZANERA,
-	ZELUNA
+	ZELUNA,
+	FEROBRA,
+	SERDEBRA,
+	VERLANA
 
 }
