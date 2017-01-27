@@ -24,7 +24,7 @@ public class TibiaConnector {
 		try {
 			String URL = handleURL(URI, parameters);
 
-			Document document = Jsoup.connect(baseURL + URI).get();
+			Document document = Jsoup.connect(URL).get();
 
 			return parser.parse(document);
 		} catch (IOException e) {
@@ -40,13 +40,10 @@ public class TibiaConnector {
 			return url.toString();
 		}
 
-		StringBuilder queryString = new StringBuilder("?");
+		StringBuilder queryString = new StringBuilder();
 
 		for(String parameter: parameters.keys()) {
-			if(queryString.length() > 1) {
-				queryString.append("&");
-			}
-
+			queryString.append("&");
 			queryString.append(parameter);
 			queryString.append("=");
 			queryString.append(parameters.valueOf(parameter));

@@ -20,6 +20,10 @@ public class World {
 		this.properties = properties;
 	}
 
+	public static World representationOf(String name) {
+		return new World(name, 0, WorldType.UNDEFINED, null);
+	}
+
 	public String getName() {
 		return name;
 	}

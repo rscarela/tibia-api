@@ -1,5 +1,6 @@
 package org.rscarela.tibia;
 
+import org.rscarela.tibia.api.players.PlayerAPI;
 import org.rscarela.tibia.api.worlds.WorldAPI;
 
 /**
@@ -16,6 +17,10 @@ public class TibiaClient {
 
 	public WorldAPI worlds() {
 		return new WorldAPI(connector);
+	}
+
+	public PlayerAPI players() {
+		return new PlayerAPI(connector);
 	}
 
 }

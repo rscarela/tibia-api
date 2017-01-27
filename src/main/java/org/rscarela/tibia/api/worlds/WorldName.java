@@ -70,6 +70,10 @@ public enum WorldName {
 	ZELUNA,
 	FEROBRA,
 	SERDEBRA,
-	VERLANA
+	VERLANA;
+
+	public String getFormattedName() {
+		return name().substring(0, 1) + name().substring(1).toLowerCase();
+	}
 
 }

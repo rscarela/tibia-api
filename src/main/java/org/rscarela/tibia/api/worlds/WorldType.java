@@ -8,6 +8,7 @@ public enum WorldType {
 	OPEN_PVP,
 	OPTIONAL_PVP,
 	HARDCORE_PVP,
-	RETRO_OPEN_PVP
+	RETRO_OPEN_PVP,
+	UNDEFINED
 
 }

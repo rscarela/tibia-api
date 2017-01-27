@@ -7,6 +7,7 @@ import java.util.Set;
 /**
  * @Author Renan Scarela
  */
+
 public class TibiaParameters {
 
 	private final Map<String, String> parameters;
@@ -20,6 +21,7 @@ public class TibiaParameters {
 	}
 
 	public TibiaParameters setParameter(String key, String value) {
+		parameters.put(key, value.replaceAll("\\xA0","%20").replaceAll("'", "%27"));
 		return this;
 	}
 
