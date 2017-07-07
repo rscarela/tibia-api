@@ -73,5 +73,9 @@ public class Player {
 	public void setAccountStatus(String accountStatus) {
 		this.accountStatus = AccountStatus.getStatusByName(accountStatus);
 	}
-	
+
+	public boolean isValidPlayer() {
+		return name != null;
+	}
+
 }

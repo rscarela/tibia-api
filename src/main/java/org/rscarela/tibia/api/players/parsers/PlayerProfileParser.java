@@ -5,8 +5,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.rscarela.tibia.ResponseParser;
 import org.rscarela.tibia.api.players.Player;
+import org.rscarela.tibia.api.players.UnexistingPlayer;
 import org.rscarela.tibia.api.worlds.World;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,15 +21,21 @@ public class PlayerProfileParser implements ResponseParser<Player> {
 	public Player parse(Document response) {
 		Map<String, String> data = parseData(response);
 
+		if(data.isEmpty()) {
+			return new UnexistingPlayer();
+		}
+
 		Player player = getBasicProfile(data);
 		setupDetailedProfile(player, data);
 
 		return player;
 	}
 
-	private HashMap<String, String> parseData(Document response) {
+	private Map<String, String> parseData(Document response) {
 		Element table = response.select("table").first();
 		Elements rows = table.select("tr");
+
+		if(rows.size() == 3) return Collections.EMPTY_MAP;
 
 		HashMap<String, String> data = new HashMap<>();
 

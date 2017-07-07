@@ -60,4 +60,11 @@ public class PlayerAPITest {
 		Assert.assertNotNull(player);
 	}
 
+	@Test
+	public void mustReturnAnUnexistingPlayerWhenTryingToFetchAPlayerThatDoesntExists() {
+		Player player = tibia.players().fetchPlayer("Shadow Azir 222");
+
+		Assert.assertFalse(player.isValidPlayer());
+	}
+
 }
