@@ -1,6 +1,7 @@
 package org.rscarela.tibia.api.worlds;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.rscarela.tibia.TibiaClient;
 import org.rscarela.tibia.TibiaClientBuilder;
@@ -13,6 +14,11 @@ import static org.junit.Assert.*;
  * @Author Renan Scarela
  */
 public class WorldAPITest {
+
+	@Before
+	public void setup() throws InterruptedException {
+		Thread.sleep(750);
+	}
 
 	@Test
 	public void mustListAllGameWorlds() throws Exception {
@@ -40,6 +46,39 @@ public class WorldAPITest {
 		World world = tibia.worlds().fetchByName("Serdebra");
 
 		Assert.assertEquals(world.getName(), "Serdebra");
+	}
+
+	@Test
+	public void mustListEuropeanGameServers() {
+		TibiaClient tibia = new TibiaClientBuilder().build();
+
+		List<World> worlds = tibia.worlds().fetchEuropean();
+
+		for(World world : worlds) {
+			Assert.assertEquals(WorldLocation.EUROPE, world.getLocation());
+		}
+	}
+
+	@Test
+	public void mustListNorthAmericanGameServers() {
+		TibiaClient tibia = new TibiaClientBuilder().build();
+
+		List<World> worlds = tibia.worlds().fetchNorthAmerican();
+
+		for(World world : worlds) {
+			Assert.assertEquals(WorldLocation.NORTH_AMERICA, world.getLocation());
+		}
+	}
+
+	@Test
+	public void mustListShoutAmericanGameServers() {
+		TibiaClient tibia = new TibiaClientBuilder().build();
+
+		List<World> worlds = tibia.worlds().fetchSouthAmerican();
+
+		for(World world : worlds) {
+			Assert.assertEquals(WorldLocation.SOUTH_AMERICA, world.getLocation());
+		}
 	}
 
 }

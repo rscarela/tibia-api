@@ -17,6 +17,10 @@ import java.util.List;
 @RunWith(JUnit4.class)
 public class PlayerAPITest {
 
+	public void setup() throws InterruptedException {
+		Thread.sleep(750);
+	}
+
 	@Test
 	public void mustFetchAllPlayersOnlineOnGivingWorld() {
 		TibiaClient tibia = new TibiaClientBuilder().build();
