@@ -15,15 +15,17 @@ import static org.junit.Assert.*;
  */
 public class WorldAPITest {
 
+	private TibiaClient tibia;
+
 	@Before
-	public void setup() throws InterruptedException {
-		Thread.sleep(750);
+	public void setup() {
+		tibia = new TibiaClientBuilder()
+									.setHandleForbiddenStatus(true)
+									.build();
 	}
 
 	@Test
 	public void mustListAllGameWorlds() throws Exception {
-		TibiaClient tibia = new TibiaClientBuilder().build();
-
 		List<World> worlds = tibia.worlds().fetchAll();
 
 		Assert.assertNotNull(worlds);
@@ -32,8 +34,6 @@ public class WorldAPITest {
 
 	@Test
 	public void mustGetAWorldByItsNameProvidingAWorldNameAsParameter() throws Exception {
-		TibiaClient tibia = new TibiaClientBuilder().build();
-
 		World world = tibia.worlds().fetchByName(WorldName.ANTICA);
 
 		Assert.assertEquals(world.getName(), "Antica");
@@ -41,8 +41,6 @@ public class WorldAPITest {
 
 	@Test
 	public void mustGetAWorldByItsNameProvidingAStringAsParameter() throws Exception {
-		TibiaClient tibia = new TibiaClientBuilder().build();
-
 		World world = tibia.worlds().fetchByName("Serdebra");
 
 		Assert.assertEquals(world.getName(), "Serdebra");
@@ -50,8 +48,6 @@ public class WorldAPITest {
 
 	@Test
 	public void mustListEuropeanGameServers() {
-		TibiaClient tibia = new TibiaClientBuilder().build();
-
 		List<World> worlds = tibia.worlds().fetchEuropean();
 
 		for(World world : worlds) {
@@ -61,8 +57,6 @@ public class WorldAPITest {
 
 	@Test
 	public void mustListNorthAmericanGameServers() {
-		TibiaClient tibia = new TibiaClientBuilder().build();
-
 		List<World> worlds = tibia.worlds().fetchNorthAmerican();
 
 		for(World world : worlds) {
@@ -72,8 +66,6 @@ public class WorldAPITest {
 
 	@Test
 	public void mustListShoutAmericanGameServers() {
-		TibiaClient tibia = new TibiaClientBuilder().build();
-
 		List<World> worlds = tibia.worlds().fetchSouthAmerican();
 
 		for(World world : worlds) {

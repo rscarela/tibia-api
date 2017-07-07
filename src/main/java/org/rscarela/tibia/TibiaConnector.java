@@ -1,5 +1,6 @@
 package org.rscarela.tibia;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -11,9 +12,11 @@ import java.io.IOException;
 public class TibiaConnector {
 
 	private final String baseURL;
+	private final TibiaConnectorTimeout timeout;
 
-	TibiaConnector(String baseURL) {
+	TibiaConnector(String baseURL, TibiaConnectorTimeout details) {
 		this.baseURL = baseURL;
+		this.timeout = details;
 	}
 
 	public <T> T get(String URI , ResponseParser<T> parser) {
@@ -27,6 +30,12 @@ public class TibiaConnector {
 			Document document = Jsoup.connect(URL).get();
 
 			return parser.parse(document);
+		} catch (HttpStatusException e) {
+			if(e.getStatusCode() != 403) throw new RuntimeException(e);
+
+			if(!timeout.mustHandleForbiddenStatus()) throw new RuntimeException("Unable to reach Tibia data.", e);
+
+			return get(URI, parameters, parser);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -50,6 +59,15 @@ public class TibiaConnector {
 		}
 
 		return url.append(queryString.toString()).toString();
+	}
+
+	private void delay() {
+		try {
+			Thread.sleep(timeout.getForbiddenStatusDelay());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 }

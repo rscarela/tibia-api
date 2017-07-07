@@ -10,9 +10,9 @@ public class TibiaClientBuilder {
 	private static final String DEFAULT_TIBIA_URL = "http://www.tibia.com";
 
 	private String baseURL;
+
 	private boolean handleForbiddenStatus;
-	private Integer forbiddenStatusDelay;
-	private Integer retryAttempts;
+	private Long forbiddenStatusDelay = 750l;
 
 	public final TibiaClient build() {
 		return new TibiaClient(getConnector());
@@ -23,7 +23,8 @@ public class TibiaClientBuilder {
 	}
 
 	private TibiaConnector getConnector() {
-		return new TibiaConnector(getBaseURL());
+		TibiaConnectorTimeout details = new TibiaConnectorTimeout(handleForbiddenStatus, forbiddenStatusDelay);
+		return new TibiaConnector(getBaseURL(), details);
 	}
 
 	public TibiaClientBuilder setBaseURL(String baseURL) {
@@ -36,13 +37,8 @@ public class TibiaClientBuilder {
 		return this;
 	}
 
-	public TibiaClientBuilder setForbiddenStatusDelay(Integer forbiddenStatusDelay) {
+	public TibiaClientBuilder setForbiddenStatusDelay(Long forbiddenStatusDelay) {
 		this.forbiddenStatusDelay = forbiddenStatusDelay;
-		return this;
-	}
-
-	public TibiaClientBuilder setRetryAttempts(Integer retryAttempts) {
-		this.retryAttempts = retryAttempts;
 		return this;
 	}
 
