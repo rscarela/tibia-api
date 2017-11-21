@@ -8,6 +8,8 @@ public class PlayerDetails {
 	
 	private Integer achievementPoints;
 
+	private String comment;
+	
 	protected PlayerDetails() {
 		this.achievementPoints = 0;
 	}
@@ -37,6 +39,14 @@ public class PlayerDetails {
 
 	public void setAchievementPoints(Integer achievementPoints) {
 		this.achievementPoints = achievementPoints;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 }

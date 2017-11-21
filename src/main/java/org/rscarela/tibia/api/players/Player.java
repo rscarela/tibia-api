@@ -2,8 +2,6 @@ package org.rscarela.tibia.api.players;
 
 import org.rscarela.tibia.api.worlds.World;
 
-import java.util.Date;
-
 public class Player {
 
 	private Long id;
@@ -20,11 +18,8 @@ public class Player {
 	
 	private GuildMembership guildMembership;
 
-	private Date creationDate;
-
 	protected Player() {
 		this.residence = new Residence();
-		this.creationDate = new Date();
 	}
 	
 	public Player(String name, World world, Integer level, String vocation) {
@@ -66,6 +61,11 @@ public class Player {
 		this.guildMembership = new GuildMembership(membership);
 	}
 
+
+	public GuildMembership getGuildMembership() {
+		return guildMembership;
+	}
+	
 	public AccountStatus getAccountStatus() {
 		return accountStatus;
 	}
@@ -77,5 +77,9 @@ public class Player {
 	public boolean isValidPlayer() {
 		return name != null;
 	}
-
+	
+	public void setComment(String comment) {
+		details.setComment(comment);
+	}
+	
 }

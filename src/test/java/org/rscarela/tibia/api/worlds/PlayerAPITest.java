@@ -55,7 +55,7 @@ public class PlayerAPITest {
 
 	@Test
 	public void mustFetchAPlayerFullProfile() {
-		Player player = tibia.players().fetchPlayer("Shadow Azir");
+		Player player = tibia.players().fetchPlayer("Scarela Knight");
 
 		Assert.assertNotNull(player);
 	}

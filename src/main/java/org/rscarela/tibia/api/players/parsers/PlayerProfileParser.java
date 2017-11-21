@@ -59,6 +59,7 @@ public class PlayerProfileParser implements ResponseParser<Player> {
 		player.setAchievementPoints(Integer.valueOf(data.get("achievement points")));
 		player.setGuildMembership(data.get("guild membership"));
 		player.setAccountStatus(data.get("account status"));
+		player.setComment(data.get("comment"));
 	}
 
 }
