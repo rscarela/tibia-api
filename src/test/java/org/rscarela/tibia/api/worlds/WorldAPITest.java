@@ -50,6 +50,7 @@ public class WorldAPITest {
 	public void mustListEuropeanGameServers() {
 		List<World> worlds = tibia.worlds().fetchEuropean();
 
+		Assert.assertFalse(worlds.isEmpty());
 		for(World world : worlds) {
 			Assert.assertEquals(WorldLocation.EUROPE, world.getLocation());
 		}
@@ -59,6 +60,7 @@ public class WorldAPITest {
 	public void mustListNorthAmericanGameServers() {
 		List<World> worlds = tibia.worlds().fetchNorthAmerican();
 
+		Assert.assertFalse(worlds.isEmpty());
 		for(World world : worlds) {
 			Assert.assertEquals(WorldLocation.NORTH_AMERICA, world.getLocation());
 		}
@@ -68,6 +70,7 @@ public class WorldAPITest {
 	public void mustListShoutAmericanGameServers() {
 		List<World> worlds = tibia.worlds().fetchSouthAmerican();
 
+		Assert.assertFalse(worlds.isEmpty());
 		for(World world : worlds) {
 			Assert.assertEquals(WorldLocation.SOUTH_AMERICA, world.getLocation());
 		}

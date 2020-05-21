@@ -22,7 +22,7 @@ public class WorldListParser implements ResponseParser<List<World>> {
 	public List<World> parse(Document response) {
 		List<World> worlds = new ArrayList<>();
 
-		Element table = response.getElementsByClass("TableContent").last();
+		Element table = response.getElementsByClass("TableContent").get(2);
 		Elements rows = table.select("tr");
 
 		for(int i = 1; i < rows.size(); i++) {
