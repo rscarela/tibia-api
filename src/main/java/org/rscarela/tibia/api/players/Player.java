@@ -56,7 +56,11 @@ public class Player {
 	public void setHouse(String house) {
 		residence.setHouse(house);
 	}
-	
+
+	public void setGuildMembership(GuildMembership guildMembership) {
+		this.guildMembership = guildMembership;
+	}
+
 	public void setGuildMembership(String membership) {
 		this.guildMembership = new GuildMembership(membership);
 	}

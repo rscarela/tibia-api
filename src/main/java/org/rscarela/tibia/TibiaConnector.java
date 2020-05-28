@@ -1,5 +1,6 @@
 package org.rscarela.tibia;
 
+import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,6 +43,29 @@ public class TibiaConnector {
 		}
 	}
 
+	public <T> T post(String URI, TibiaParameters parameters, ResponseParser<T> parser){
+		try {
+			String URL = handleURL(URI);
+
+			Document document = formData(URL, parameters).post();
+
+			return parser.parse(document);
+		} catch (HttpStatusException e) {
+			if(e.getStatusCode() != 403) throw new RuntimeException(e);
+
+			if(!timeout.mustHandleForbiddenStatus()) throw new RuntimeException("Unable to reach Tibia data.", e);
+
+			return post(URI, parameters, parser);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	private String handleURL(String URI) {
+		return handleURL(URI, TibiaParameters.empty());
+	}
+
 	private String handleURL(String URI, TibiaParameters parameters) {
 		StringBuilder url = new StringBuilder(baseURL + URI);
 
@@ -61,13 +85,14 @@ public class TibiaConnector {
 		return url.append(queryString.toString()).toString();
 	}
 
-	private void delay() {
-		try {
-			Thread.sleep(timeout.getForbiddenStatusDelay());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+	private Connection formData(String URL, TibiaParameters parameters) {
+		Connection connection = Jsoup.connect(URL);
+
+		parameters
+				.keys()
+				.forEach(key -> connection.data(key, parameters.valueOf(key)));
+
+		return connection;
 	}
 
 }

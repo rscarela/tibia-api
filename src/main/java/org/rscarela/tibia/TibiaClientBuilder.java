@@ -7,7 +7,7 @@ package org.rscarela.tibia;
 
 public class TibiaClientBuilder {
 
-	private static final String DEFAULT_TIBIA_URL = "http://www.tibia.com";
+	private static final String DEFAULT_TIBIA_URL = "https://www.tibia.com";
 
 	private String baseURL;
 

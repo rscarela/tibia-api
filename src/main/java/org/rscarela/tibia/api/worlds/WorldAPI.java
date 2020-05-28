@@ -52,4 +52,8 @@ public class WorldAPI {
 				.collect(Collectors.toList());
 	}
 
+	public WorldDataAPI from(WorldName worldName) {
+		return new WorldDataAPI(connector, World.representationOf(worldName.getFormattedName()));
+	}
+
 }

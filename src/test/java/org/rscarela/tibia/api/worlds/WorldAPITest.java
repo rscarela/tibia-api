@@ -76,4 +76,13 @@ public class WorldAPITest {
 		}
 	}
 
+	@Test
+	public void mustRetrieveAnInstanceOfWorldDataAPI() {
+		WorldDataAPI worldData = tibia
+				.worlds()
+				.from(WorldName.BELOBRA);
+
+		Assert.assertNotNull(worldData);
+	}
+
 }

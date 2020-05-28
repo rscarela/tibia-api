@@ -28,7 +28,7 @@ public class PlayerAPITest {
 	}
 
 	@Test
-	public void mustFetchAllPlayersOnlineOnGivingWorld() {
+	public void mustFetchAllPlayersOnlineOnGivenWorld() {
 		List<Player> players = tibia.players().fetchOnlinePlayersOn(WorldName.ANTICA);
 
 		Assert.assertNotNull(players);
@@ -36,7 +36,7 @@ public class PlayerAPITest {
 	}
 
 	@Test
-	public void mustFetchAllPlayersOnlineOnGivingWorldPassingAWorldAsParameters() {
+	public void mustFetchAllPlayersOnlineOnGivenWorldPassingAWorldAsParameters() {
 		World world = World.representationOf("Antica");
 
 		List<Player> players = tibia.players().fetchOnlinePlayersOn(world);
@@ -46,7 +46,7 @@ public class PlayerAPITest {
 	}
 
 	@Test
-	public void mustFetchAllPlayersOnlineOnGivingWorldPassingAStringAsParameters() {
+	public void mustFetchAllPlayersOnlineOnGivenWorldPassingAStringAsParameters() {
 		List<Player> players = tibia.players().fetchOnlinePlayersOn("Antica");
 
 		Assert.assertNotNull(players);
